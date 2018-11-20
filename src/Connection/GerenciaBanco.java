@@ -1,26 +1,24 @@
 
 package Connection;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 
 public class GerenciaBanco {
     
-    private static final String driver = "con.mysql.jdbc.Driver";
-    private static final String url = "jdbc:mysql://localhost:3306/S.I_HorasComplementares";
-    private static final String user = "root";
-    private static final String password = "admin123";
+    private static final String DRIVER = "org.gjt.mm.mysql.Driver";
+    private static final String SERVER = "localhost";
+    private static final String MYDATABASE = "S.I_HorasComplementares";
+    private static final String URL = "jdbc:mysql://" + SERVER +  "/" + MYDATABASE;
+    private static final String USER = "root";
+    private static final String PASSWORD = "admin123";
     
     public static Connection getConnection(){
         
         try {
-            Class.forName(driver);
+            Class.forName(DRIVER);
             
-            return DriverManager.getConnection(url, user, password);
+            return DriverManager.getConnection(URL, USER, PASSWORD);
         } catch (ClassNotFoundException | SQLException ex) {
             throw new RuntimeException("Erro na conexão", ex);
         }

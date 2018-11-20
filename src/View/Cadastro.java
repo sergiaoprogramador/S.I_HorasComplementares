@@ -1,8 +1,13 @@
 package View;
 
+import Controller.CadastroController;
+
 public class Cadastro extends javax.swing.JFrame {
+    CadastroController cadastroController;
+    
     public Cadastro() {
         initComponents();
+        cadastroController = new CadastroController();
     }
     
     @SuppressWarnings("unchecked")
@@ -14,27 +19,28 @@ public class Cadastro extends javax.swing.JFrame {
         jPMenu = new javax.swing.JPanel();
         jpPesquisarCertificado = new javax.swing.JPanel();
         jpEnviarCertificado = new javax.swing.JPanel();
-        jTextField3 = new javax.swing.JTextField();
+        jTxtCpf = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jPasswordField3 = new javax.swing.JPasswordField();
-        jPasswordField1 = new javax.swing.JPasswordField();
         jLabel4 = new javax.swing.JLabel();
-        jPasswordField2 = new javax.swing.JPasswordField();
-        jTextField4 = new javax.swing.JTextField();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        jTxtData_nascimento = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         btnVoltar = new javax.swing.JButton();
         btnLimpar = new javax.swing.JButton();
         btnSalvar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        jPasswordField4 = new javax.swing.JPasswordField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jFormattedTextField3 = new javax.swing.JFormattedTextField();
         jLabel11 = new javax.swing.JLabel();
-        jPasswordField5 = new javax.swing.JPasswordField();
         jLabel12 = new javax.swing.JLabel();
+        lblResultado = new javax.swing.JLabel();
+        jTxtMatricula = new javax.swing.JTextField();
+        jTxtEmail = new javax.swing.JTextField();
+        jTxtConfirmarSenha = new javax.swing.JTextField();
+        jTxtSenha = new javax.swing.JTextField();
+        jTxtCampus = new javax.swing.JTextField();
+        jTxtCurso = new javax.swing.JTextField();
+        jTxtNome = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -81,12 +87,12 @@ public class Cadastro extends javax.swing.JFrame {
 
         getContentPane().add(jPMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 300, 660));
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        jTxtCpf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                jTxtCpfActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 90, 460, 40));
+        getContentPane().add(jTxtCpf, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 460, 40));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -97,18 +103,12 @@ public class Cadastro extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Matricula:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, 120, 40));
-        getContentPane().add(jPasswordField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 210, 460, 40));
-        getContentPane().add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 330, 460, 40));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("Senha:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 330, 70, 40));
-        getContentPane().add(jPasswordField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 390, 460, 40));
-        getContentPane().add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 450, 228, 40));
-
-        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-        getContentPane().add(jFormattedTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 570, 470, 40));
+        getContentPane().add(jTxtData_nascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 450, 228, 40));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -146,7 +146,6 @@ public class Cadastro extends javax.swing.JFrame {
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel8.setText("Confirmar Senha:");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 390, 150, 40));
-        getContentPane().add(jPasswordField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 270, 460, 40));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -158,27 +157,73 @@ public class Cadastro extends javax.swing.JFrame {
         jLabel10.setText("Data de Nascimento:");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 450, 190, 40));
 
-        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-        getContentPane().add(jFormattedTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 510, 470, 40));
-
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel11.setText("Curso:");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 570, 70, 40));
-        getContentPane().add(jPasswordField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 150, 460, 40));
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel12.setText("CPF:");
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 150, 60, 40));
+        getContentPane().add(lblResultado, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 60, 460, 30));
+
+        jTxtMatricula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtMatriculaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTxtMatricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 210, 460, 40));
+
+        jTxtEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtEmailActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTxtEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 270, 460, 40));
+
+        jTxtConfirmarSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtConfirmarSenhaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTxtConfirmarSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 390, 460, 40));
+
+        jTxtSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtSenhaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTxtSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 330, 460, 40));
+
+        jTxtCampus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtCampusActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTxtCampus, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 510, 460, 40));
+
+        jTxtCurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtCursoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTxtCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 570, 460, 40));
+
+        jTxtNome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtNomeActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTxtNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 90, 460, 40));
 
         setSize(new java.awt.Dimension(1376, 750));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void jTxtCpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtCpfActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_jTxtCpfActionPerformed
 
     private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
         dispose();
@@ -192,10 +237,53 @@ public class Cadastro extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         
-        dispose();
-        Home tela = new Home();
-        tela.setVisible(true);
+        String resultado = "";
+        
+        resultado = cadastroController.cadastrarAluno( 
+                                            jTxtNome.getText(), 
+                                            jTxtCpf.getText(), 
+                                            jTxtMatricula.getText(), 
+                                            jTxtEmail.getText(), 
+                                            jTxtSenha.getText(), 
+                                            jTxtData_nascimento.getText(), 
+                                            jTxtCampus.getText(), 
+                                            jTxtCurso.getText()
+        );
+        
+        lblResultado.setText(resultado);
+        
+        //dispose();
+        //Home tela = new Home();
+        //tela.setVisible(true);
     }//GEN-LAST:event_btnSalvarActionPerformed
+
+    private void jTxtMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtMatriculaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtMatriculaActionPerformed
+
+    private void jTxtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtEmailActionPerformed
+
+    private void jTxtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtSenhaActionPerformed
+
+    private void jTxtConfirmarSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtConfirmarSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtConfirmarSenhaActionPerformed
+
+    private void jTxtCampusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtCampusActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtCampusActionPerformed
+
+    private void jTxtCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtCursoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtCursoActionPerformed
+
+    private void jTxtNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtNomeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtNomeActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -209,8 +297,6 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
-    private javax.swing.JFormattedTextField jFormattedTextField3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -222,17 +308,18 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPMenu;
-    private javax.swing.JPasswordField jPasswordField1;
-    private javax.swing.JPasswordField jPasswordField2;
-    private javax.swing.JPasswordField jPasswordField3;
-    private javax.swing.JPasswordField jPasswordField4;
-    private javax.swing.JPasswordField jPasswordField5;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTxtCampus;
+    private javax.swing.JTextField jTxtConfirmarSenha;
+    private javax.swing.JTextField jTxtCpf;
+    private javax.swing.JTextField jTxtCurso;
+    private javax.swing.JTextField jTxtData_nascimento;
+    private javax.swing.JTextField jTxtEmail;
+    private javax.swing.JTextField jTxtMatricula;
+    private javax.swing.JTextField jTxtNome;
+    private javax.swing.JTextField jTxtSenha;
     private javax.swing.JPanel jpEnviarCertificado;
     private javax.swing.JPanel jpHeader;
     private javax.swing.JPanel jpPesquisarCertificado;
+    private javax.swing.JLabel lblResultado;
     // End of variables declaration//GEN-END:variables
 }
