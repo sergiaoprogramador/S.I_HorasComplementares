@@ -1,5 +1,7 @@
 package View;
 
+import Model.Aluno;
+
 public class Login extends javax.swing.JFrame {
 
     public Login() {
@@ -109,8 +111,10 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEntrarActionPerformed
+        Aluno aluno = null;
+        
         dispose();
-        Home tela = new Home();
+        Home tela = new Home(aluno);
         tela.setVisible(true);
     }//GEN-LAST:event_BtnEntrarActionPerformed
 

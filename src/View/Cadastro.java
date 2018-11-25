@@ -1,13 +1,14 @@
 package View;
 
-import Controller.CadastroController;
+import Controller.AlunoController;
+import Model.Aluno;
 
 public class Cadastro extends javax.swing.JFrame {
-    CadastroController cadastroController;
+    AlunoController alunoController;
     
     public Cadastro() {
         initComponents();
-        cadastroController = new CadastroController();
+        alunoController = new AlunoController();
     }
     
     @SuppressWarnings("unchecked")
@@ -237,9 +238,7 @@ public class Cadastro extends javax.swing.JFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         
-        String resultado = "";
-        
-        resultado = cadastroController.cadastrarAluno( 
+        Aluno aluno = alunoController.cadastrarAluno( 
                                             jTxtNome.getText(), 
                                             jTxtCpf.getText(), 
                                             jTxtMatricula.getText(), 
@@ -249,12 +248,23 @@ public class Cadastro extends javax.swing.JFrame {
                                             jTxtCampus.getText(), 
                                             jTxtCurso.getText()
         );
+
         
-        lblResultado.setText(resultado);
-        
-        //dispose();
-        //Home tela = new Home();
-        //tela.setVisible(true);
+        if(aluno != null) {
+            lblResultado.setText("Aluno cadastrado com sucesso");
+            
+            limpaCadastro();
+            System.out.println("Aluno com " + "id: " + aluno.getIdAluno() + "foi cadastrado. Aqui é a tela cadastro! Debbuger");
+            System.out.println("==============================================================================================");
+            dispose();
+            System.out.println("Abrindo tela home e passando o objeto aluno.");
+            System.out.println("==============================================================================================");
+            Home tela = new Home(aluno);
+            tela.setVisible(true);
+        } else {
+            lblResultado.setText("Erro ao cadastrar aluno!");
+            System.out.println("Entrou no else do metodo btnSalvar da tela cadastro!");
+        }
     }//GEN-LAST:event_btnSalvarActionPerformed
 
     private void jTxtMatriculaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtMatriculaActionPerformed
@@ -291,6 +301,18 @@ public class Cadastro extends javax.swing.JFrame {
                 new Cadastro().setVisible(true);
             }
         });
+    }
+    
+    
+    public void limpaCadastro() {
+        jTxtNome.setText(""); 
+        jTxtCpf.setText(""); 
+        jTxtMatricula.setText("");
+        jTxtEmail.setText("");
+        jTxtSenha.setText("");
+        jTxtData_nascimento.setText("");
+        jTxtCampus.setText("");
+        jTxtCurso.setText("");
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

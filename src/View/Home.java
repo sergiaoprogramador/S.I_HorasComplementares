@@ -1,9 +1,22 @@
 package View;
 
+import Model.Aluno;
+
 public class Home extends javax.swing.JFrame {
-    public Home() {
+    
+    private final Aluno aluno;
+    
+    public Home(Aluno aluno) {
+        this.aluno = aluno;
         initComponents();
+        System.out.println("Esta é a tela Home");
+        System.out.println("================================================");
     }
+
+    private Home() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -11,8 +24,10 @@ public class Home extends javax.swing.JFrame {
 
         jpHeader = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        lblNomeAluno = new javax.swing.JLabel();
         btnSair = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        btnEditar = new javax.swing.JButton();
         jPMenu = new javax.swing.JPanel();
         jpPesquisarCertificado = new javax.swing.JPanel();
         lblPesquisarCertificado = new javax.swing.JButton();
@@ -34,11 +49,11 @@ public class Home extends javax.swing.JFrame {
         jLabel7.setText("Home");
         jpHeader.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 10, 204, 40));
 
-        jLabel8.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Usuario");
-        jpHeader.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 10, 275, 40));
+        lblNomeAluno.setFont(new java.awt.Font("SansSerif", 0, 22)); // NOI18N
+        lblNomeAluno.setForeground(new java.awt.Color(1, 1, 1));
+        lblNomeAluno.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblNomeAluno.setText("Usuario");
+        jpHeader.add(lblNomeAluno, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 0, 100, -1));
 
         btnSair.setText("Sair");
         btnSair.addActionListener(new java.awt.event.ActionListener() {
@@ -46,9 +61,21 @@ public class Home extends javax.swing.JFrame {
                 btnSairActionPerformed(evt);
             }
         });
-        jpHeader.add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(1200, 10, 157, 40));
+        jpHeader.add(btnSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(1180, 10, 157, 40));
 
-        getContentPane().add(jpHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1390, 60));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/Perfil.png"))); // NOI18N
+        jpHeader.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 0, 70, 60));
+
+        btnEditar.setText("Editar");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
+        jpHeader.add(btnEditar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 80, 30));
+
+        getContentPane().add(jpHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1370, 60));
 
         jPMenu.setBackground(new java.awt.Color(224, 224, 224));
         jPMenu.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -112,7 +139,7 @@ public class Home extends javax.swing.JFrame {
         jPMenu.add(jpEnviarCertificado, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 330));
 
         getContentPane().add(jPMenu, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 300, 660));
-        getContentPane().add(jDesktop, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 60, 1060, 660));
+        getContentPane().add(jDesktop, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 60, 1060, 660));
 
         setSize(new java.awt.Dimension(1376, 750));
         setLocationRelativeTo(null);
@@ -124,26 +151,50 @@ public class Home extends javax.swing.JFrame {
         tela.setVisible(true);
     }//GEN-LAST:event_btnSairActionPerformed
 
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        listarAluno();
+    }//GEN-LAST:event_btnEditarActionPerformed
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Home().setVisible(true);
             }
         });
+        
+        
+    }
+    
+    public void listarAluno() {
+        if(aluno == null) {
+            System.out.println("Aluno é null!");
+        } else {
+            System.out.println("Id: " + aluno.getIdAluno());
+            System.out.println("Nome: " + aluno.getCadastro().getNome());
+            System.out.println("Matricula: " + aluno.getMatricula());
+            System.out.println("Cpf: " + aluno.getCadastro().getCpf());
+            System.out.println("Email: " + aluno.getCadastro().getEmail());
+            System.out.println("Senha: " + aluno.getCadastro().getSenha());
+            System.out.println("Data de nascimento: " + aluno.getCadastro().getData_nascimento());
+            System.out.println("Campus: " + aluno.getCadastro().getCampus());
+            System.out.println("Curso: " + aluno.getCadastro().getCurso());
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnEnviarCertificado;
     private javax.swing.JLabel btnPesquisarCertificado;
     private javax.swing.JButton btnSair;
     private javax.swing.JDesktopPane jDesktop;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPMenu;
     private javax.swing.JPanel jpEnviarCertificado;
     private javax.swing.JPanel jpHeader;
     private javax.swing.JPanel jpPesquisarCertificado;
     private javax.swing.JLabel lblEnviarCertificado;
+    private javax.swing.JLabel lblNomeAluno;
     private javax.swing.JButton lblPesquisarCertificado;
     // End of variables declaration//GEN-END:variables
 }

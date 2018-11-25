@@ -35,6 +35,26 @@ public class Cadastro {
         this.curso = curso;
     }
     
+    public Cadastro(int idCadastro,
+                    String nome,
+                    String cpf,
+                    String email,
+                    String senha,
+                    String data_nascimento,
+                    String campus,
+                    String curso
+    )
+    {
+        this.idCadastro = idCadastro;
+        this.nome = nome;
+        this.cpf = cpf;
+        this.email = email;
+        this.senha = senha;
+        this.data_nascimento = data_nascimento;
+        this.campus = campus;
+        this.curso = curso;
+    }
+    
     public int getIdCadastro() {
         return idCadastro;
     }
