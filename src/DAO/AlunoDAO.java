@@ -183,6 +183,87 @@ public class AlunoDAO {
         }
     }
     
+    public boolean read(String cpf) {
+        if(conexao == null) {
+            conexao = GerenciaBanco.getConnection();
+        }
+        
+        PreparedStatement stmt =  null;
+        ResultSet resultSet;
+        
+        String sql = "SELECT * FROM cadastro WHERE cpf = ?";
+        
+        try {
+            stmt = conexao.prepareStatement(sql);
+            
+            stmt.setString( 1, cpf);
+            
+            resultSet = stmt.executeQuery();
+            
+            if (resultSet.next()){
+                System.out.println("Tudo correu bem no metodo read da classe AlunoDAO! O cadastro referente ao cpf já existe no banco de dados....");
+                System.out.println("===================================================================");
+                return true;
+            } else {
+                System.out.println("Tudo correu bem no metodo read da classe AlunoDAO! O cadastro referente ao cpf não existe no banco de dados....");
+                return false;
+            }
+            
+        } catch (SQLException ex) {
+            System.err.println("Erro" + ex);
+            System.out.println("Ocorreu uma exceção no metodo read da classe AlunoDAO! Retornando false....");
+            System.out.println("===================================================================");
+            return false;
+        } finally {
+            GerenciaBanco.closeConnection(conexao, stmt);
+            conexao = null;
+        }
+    }
+    
+    public Aluno read(String cpf, String senha) {
+        if(conexao == null) {
+            conexao = GerenciaBanco.getConnection();
+        }
+        
+        PreparedStatement stmt =  null;
+        ResultSet resultSet;
+        
+        String sql = "SELECT * FROM view_aluno_cadastro WHERE cpf = ? AND senha = ?";
+        
+        try {
+            stmt = conexao.prepareStatement(sql);
+            
+            stmt.setString( 1, cpf);
+            stmt.setString( 2, senha);
+            
+            resultSet = stmt.executeQuery();
+            
+            resultSet.next();
+            Cadastro cadastro = new Cadastro(   resultSet.getInt("id_cadastro"), 
+                                                resultSet.getString("nome"), 
+                                                resultSet.getString("cpf"),
+                                                resultSet.getString("email"),
+                                                resultSet.getString("senha"),
+                                                resultSet.getString("data_nascimento"),
+                                                resultSet.getString("campus"),
+                                                resultSet.getString("curso")
+            );
+            
+            Aluno aluno = new Aluno(resultSet.getInt("id_aluno"), resultSet.getString("matricula"), cadastro);
+            System.out.println("Tudo correu bem no metodo read da classe AlunoDAO! Retornando aluno referente aos dados de login...");
+            System.out.println("===================================================================");
+            return aluno;
+        } catch (SQLException ex) {
+            System.err.println("Erro" + ex);
+            System.out.println("Ocorreu uma exceção no metodo read da classe AlunoDAO! Retornando null....");
+            System.out.println("===================================================================");
+            return null;
+        } finally {
+            GerenciaBanco.closeConnection(conexao, stmt);
+            conexao = null;
+        }
+    }
+    
     public int update(Aluno aluno, Cadastro cadastro) {
         if(conexao == null) {
             conexao = GerenciaBanco.getConnection();

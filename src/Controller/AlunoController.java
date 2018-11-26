@@ -7,8 +7,13 @@ import Model.Cadastro;
 
 public class AlunoController {
     //private Connection conexao = null;
+    private AlunoDAO alunoDao;
+    private CadastroDAO cadastroDao;
+    
     public AlunoController() {
         //conexao = GerenciaBanco.getConnection();
+        this.alunoDao = new AlunoDAO();
+        this.cadastroDao = new CadastroDAO();
     }
     
     public Aluno cadastrarAluno(
@@ -27,8 +32,6 @@ public class AlunoController {
         System.out.println("Criou objeto cadastro! Aqui é a classe AlunoController!");
         System.out.println("===================================================================");
         
-        CadastroDAO cadastroDao = new CadastroDAO();
-        
         int cadastro_id = cadastroDao.create(cadastro);
         
         if(cadastro_id != 0) {
@@ -43,8 +46,6 @@ public class AlunoController {
         Aluno aluno = new Aluno(matricula, cadastro);
         System.out.println("Criou objeto aluno! Aqui é a classe AlunoController");
         System.out.println("===================================================================");
-        
-        AlunoDAO alunoDao = new AlunoDAO();
         
         int aluno_id = alunoDao.create(aluno, cadastro_id);
         
@@ -63,14 +64,22 @@ public class AlunoController {
         return aluno;
     }
     
-    //public Object getDados(int aluno_id) {
-    //    AlunoDAO alunoDao = new AlunoDAO();
-    //    
-    //    Object dados = alunoDao.select(aluno_id);
-    //    if(!"0".equals(dados.toString())) {
-    //        return dados;
-    //    } else {
-    //        return 0;
-    //    }
-    //}
+    public boolean verificaCadastro(String cpf){
+        
+        if(alunoDao.read(cpf)){
+        
+        return true;
+        }
+        
+        return false;
+    }
+    
+    public Aluno loginAluno(String cpf, String senha) {
+        Aluno aluno = alunoDao.read(cpf, senha);
+        
+        if(aluno != null){
+            return aluno;
+        }
+        return null;
+    }
 }

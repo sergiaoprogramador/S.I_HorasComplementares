@@ -1,7 +1,9 @@
 package Model;
 
+// classe
 public class Cadastro {
     
+    // Atributos da classe definindo encapsulamento
     private int idCadastro;
     private String nome;
     private String cpf;
@@ -11,11 +13,25 @@ public class Cadastro {
     private String campus;
     private String curso;
     
-    
+    // Metodo construtor vazio
     public Cadastro() {
         
     }
     
+    // Sobrecarga do metodo construtor passando id
+    public Cadastro(Cadastro cadastro)
+    {
+        this.idCadastro = cadastro.getIdCadastro();
+        this.nome = cadastro.getNome();
+        this.cpf = cadastro.getCpf();
+        this.email = cadastro.getEmail();
+        this.senha = cadastro.getSenha();
+        this.data_nascimento = cadastro.getData_nascimento();
+        this.campus = cadastro.getCampus();
+        this.curso = cadastro.getCurso();
+    }
+    
+    // Sobrecarga do metodo construtor sem passar id
     public Cadastro(
                     String nome,
                     String cpf,
@@ -35,6 +51,7 @@ public class Cadastro {
         this.curso = curso;
     }
     
+    // Sobrecarga do metodo construtor passando id
     public Cadastro(int idCadastro,
                     String nome,
                     String cpf,
@@ -55,6 +72,8 @@ public class Cadastro {
         this.curso = curso;
     }
     
+    
+    // Metodos getters e setters para acesso dos atributos
     public int getIdCadastro() {
         return idCadastro;
     }
@@ -118,6 +137,5 @@ public class Cadastro {
     public void setCurso(String curso) {
         this.curso = curso;
     }
-    
     
 }
