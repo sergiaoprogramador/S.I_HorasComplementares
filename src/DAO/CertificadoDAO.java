@@ -3,6 +3,7 @@ package DAO;
 // imports necessário para comunicação com banco de dados e model
 import Connection.GerenciaBanco;
 import Model.Cadastro;
+import java.io.FileInputStream;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,8 @@ public class CertificadoDAO {
         PreparedStatement stmt =  null;
         // objeto resultSet
         ResultSet resultSet = null;
+        
+        FileInputStream input = null;
         
         // Comando sql
         String sql = "INSERT INTO cadastro (nome, cpf, email, senha, data_nascimento, campus, curso) VALUES (?, ?, ?, ?, ?, ?, ?)";

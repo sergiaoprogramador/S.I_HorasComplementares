@@ -41,6 +41,7 @@ public class ValidarCertificado extends javax.swing.JInternalFrame {
         jTextField2 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jComboBoxCurso = new javax.swing.JComboBox<>();
+        jButton7 = new javax.swing.JButton();
 
         setMaximumSize(new java.awt.Dimension(1065, 580));
         setMinimumSize(new java.awt.Dimension(1065, 580));
@@ -96,8 +97,8 @@ public class ValidarCertificado extends javax.swing.JInternalFrame {
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 1030, 358));
 
         jButton1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        jButton1.setText("Ultimo");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 490, 130, 40));
+        jButton1.setText("Validar");
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 60, 130, 40));
 
         jButton2.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jButton2.setText("2");
@@ -121,29 +122,33 @@ public class ValidarCertificado extends javax.swing.JInternalFrame {
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1.setText("Pesquisar por nome:");
+        jLabel1.setText("Pesquisar por codigo:");
         jLabel1.setToolTipText("");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, 420, 40));
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, 420, 50));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 20, 210, 40));
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 60, 210, 40));
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel2.setText("Status:");
+        jLabel2.setText("Horas Validas:");
         jLabel2.setToolTipText("");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 10, 200, 40));
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 50, 230, 50));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 20, 130, 40));
+        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 60, 130, 40));
 
         jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel3.setText("Pesquisar por codigo:");
+        jLabel3.setText("Status:");
         jLabel3.setToolTipText("");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, 200, 40));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 20, 230, 40));
 
         jComboBoxCurso.setFont(new java.awt.Font("Ubuntu", 0, 18)); // NOI18N
-        jComboBoxCurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aceito", "Negado" }));
+        jComboBoxCurso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Aguardando", "Aceito", "Negado" }));
         jComboBoxCurso.setAlignmentX(3.0F);
         jComboBoxCurso.setMaximumSize(new java.awt.Dimension(105, 31));
-        getContentPane().add(jComboBoxCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 50, 230, 50));
+        getContentPane().add(jComboBoxCurso, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 60, 230, 40));
+
+        jButton7.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        jButton7.setText("Ultimo");
+        getContentPane().add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 490, 130, 40));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -156,6 +161,7 @@ public class ValidarCertificado extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JComboBox<String> jComboBoxCurso;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
