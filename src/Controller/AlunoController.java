@@ -7,8 +7,8 @@ import Model.Cadastro;
 
 public class AlunoController {
     //private Connection conexao = null;
-    private AlunoDAO alunoDao;
-    private CadastroDAO cadastroDao;
+    private final AlunoDAO alunoDao;
+    private final CadastroDAO cadastroDao;
     
     public AlunoController() {
         //conexao = GerenciaBanco.getConnection();
@@ -64,14 +64,9 @@ public class AlunoController {
         return aluno;
     }
     
-    public boolean verificaCadastro(String cpf){
+    public boolean verificaAluno(String cpf){
         
-        if(alunoDao.read(cpf)){
-        
-        return true;
-        }
-        
-        return false;
+        return alunoDao.read(cpf);
     }
     
     public Aluno loginAluno(String cpf, String senha) {

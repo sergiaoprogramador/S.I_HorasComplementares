@@ -7,14 +7,13 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-// classe
-public class CadastroDAO {
-    
+public class CertificadoDAO {
+
     // variavel que terá conexao com bd
     private Connection conexao = null;
 
     //Construtor da classe. cria objeto atribuindo conexao com bd
-    public CadastroDAO() {
+    public CertificadoDAO() {
         conexao = GerenciaBanco.getConnection();
     }
     

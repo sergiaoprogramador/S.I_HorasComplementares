@@ -2,10 +2,11 @@ package View;
 
 import Model.Aluno;
 import Controller.AlunoController;
+import javax.swing.JOptionPane;
 
 public class Login extends javax.swing.JFrame {
     
-    private AlunoController alunoController;
+    private final AlunoController alunoController;
     
     public Login() {
        super("Login");
@@ -120,22 +121,34 @@ public class Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEntrarActionPerformed
-
-        if (jTxtCpf.getText().trim().length() == 14 && !"".equals(jTxtSenha.getText().trim())){
-            Aluno aluno = alunoController.loginAluno(jTxtCpf.getText(), jTxtSenha.getText());
-            if(aluno != null) {
-                dispose();
-                Home tela = new Home(aluno);
-                tela.setVisible(true);
+        String cpf = jTxtCpf.getText(), senha = jTxtSenha.getText();
+        
+        if (cpf.trim().length() == 14 && !"".equals(senha.trim())){
+            if(alunoController.verificaAluno(cpf)){                
+                Aluno aluno = alunoController.loginAluno(cpf, senha);
+                if(aluno != null) {
+                    dispose();
+                    Home tela = new Home(aluno);
+                    tela.setVisible(true);
+                } else {
+                    lblMensagem.setText("Senha incorreta. Tente novamente!");
+                }
             } else {
-                lblMensagem.setText("Cpf ou Senha incorreto. Tente novamente!");
+                int action = JOptionPane.showConfirmDialog(this, "Deseja fazer o cadastro?", "Aluno não está cadastrado!", WIDTH);
+                
+                if (action == 0) {
+                    Cadastro cadastro = new Cadastro();
+                    cadastro.setVisible(true);
+                } else {
+                    lblMensagem.setText("Aluno não cadastrado!");
+                }
             }
         } else if (jTxtCpf.getText().trim().length() < 14 && "".equals(jTxtSenha.getText().trim())) {
             lblMensagem.setText("Os campos cpf e senha devem ser preenchidos!");
         } else if (jTxtCpf.getText().trim().length() < 14) {
             lblMensagem.setText("Cpf deve ser preenchido!");
         } else if ("".equals(jTxtSenha.getText().trim())) {
-            lblMensagem.setText("Senha não pode ser nulo!");
+            lblMensagem.setText("Senha deve ser preenchido!");
         }
         
     }//GEN-LAST:event_BtnEntrarActionPerformed

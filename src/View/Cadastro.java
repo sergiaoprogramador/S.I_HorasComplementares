@@ -261,7 +261,7 @@ public class Cadastro extends javax.swing.JFrame {
             lblResultado.setText("Verifique seus dados!");
         } else { 
             
-            if(alunoController.verificaCadastro(jTxtCpf.getText())){
+            if(alunoController.verificaAluno(jTxtCpf.getText())){
                 lblResultado.setText("O cadastro já existe. Faça login!");
             } else {
                 
@@ -422,7 +422,6 @@ public class Cadastro extends javax.swing.JFrame {
     private javax.swing.JButton btnLimpar;
     private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JComboBox<String> grupoComboBox;
     private javax.swing.JComboBox<String> jComboBoxCampus;
     private javax.swing.JComboBox<String> jComboBoxCurso;
     private javax.swing.JLabel jLabel1;

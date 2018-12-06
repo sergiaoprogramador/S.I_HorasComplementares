@@ -1,6 +1,6 @@
-
 package DAO;
 
+// imports necessário para comunicação com banco de dados e model
 import Connection.GerenciaBanco;
 import Model.Aluno;
 import Model.Cadastro;
@@ -8,48 +8,69 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+// classe
 public class AlunoDAO {
     
+    // variavel que terá conexao com bd
     private Connection conexao = null;
+    Cadastro cadastro;
+    Aluno aluno;
     
+    // Construtor da classe. cria objeto atribuindo conexao com bd
     public AlunoDAO() {
         conexao = GerenciaBanco.getConnection();
     }
     
+    // Metodo para criar cadastro de aluno no banco de dados
     public int create(Aluno aluno) {
+        //verifica se tem conexão
         if(conexao == null) {
+            // atribui conexao
             conexao = GerenciaBanco.getConnection();
         }
         
+        // objeto statement
         PreparedStatement stmt =  null;
+        // objeto resultSet
+        ResultSet resultSet = null;
         
+        // Comando sql
         String sql = "INSERT INTO aluno (matricula, cadastro_id) VALUES (?, ?)";
         
         try {
+            // prepara sql. Define o retorno do id cadastrado
             stmt = conexao.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             
+            // seta valores correspondente aos dados das colunas da tabela aluno
             stmt.setString(1, aluno.getMatricula());
             stmt.setInt(2, aluno.getCadastro().getIdCadastro());
             
+            // executa o sql
             stmt.executeUpdate();
             
-            ResultSet resultSet = stmt.getGeneratedKeys();
+            // resultado da operação. Pega o id
+            resultSet = stmt.getGeneratedKeys();
             if(resultSet.next()) {
                 int lastId = resultSet.getInt(1);
                 System.out.println("Tudo correu bem no metodo create da classe AlunoDAO! Retornando lastId....");
                 System.out.println("===================================================================");
+                
+                // retorna id do aluno
                 return lastId;
             }
             
+            // se retornar 0, faço verificação na controller
             return 0;
         } catch (SQLException ex) {
+            // Tratamento de exceção
             System.err.println("Erro" + ex);
             System.out.println("Ocorreu uma exceção no metodo create da classe AlunoDAO! Retornando 1....");
             System.out.println("===================================================================");
+            // se retornar 0, faço verificação na controller
             return 0;
         } finally {
-            // Mostra o sql System.out.println(stmt.toString());
+            // o finally sempre executará após o try
+            // Fecha objetos conexão, stmt e resutlSet
             GerenciaBanco.closeConnection(conexao, stmt);
             conexao = null;
         }
@@ -110,7 +131,7 @@ public class AlunoDAO {
             resultSet = stmt.executeQuery();
             
             while(resultSet.next()){
-                Cadastro cadastro = new Cadastro(   resultSet.getInt("id_cadastro"),
+                cadastro = new Cadastro(   resultSet.getInt("id_cadastro"),
                                                     resultSet.getString("nome"), 
                                                     resultSet.getString("cpf"),
                                                     resultSet.getString("email"),
@@ -120,7 +141,7 @@ public class AlunoDAO {
                                                     resultSet.getString("curso")
                 );
                 
-                Aluno aluno = new Aluno(resultSet.getInt("id_aluno"), resultSet.getString("matricula"), cadastro);
+                aluno = new Aluno(resultSet.getInt("id_aluno"), resultSet.getString("matricula"), cadastro);
                 
                 alunos.add(aluno);
                 
@@ -158,7 +179,7 @@ public class AlunoDAO {
             resultSet = stmt.executeQuery();
             
             resultSet.next();
-            Cadastro cadastro = new Cadastro(   resultSet.getInt("id_cadastro"), 
+            this.cadastro = new Cadastro(   resultSet.getInt("id_cadastro"), 
                                                 resultSet.getString("nome"), 
                                                 resultSet.getString("cpf"),
                                                 resultSet.getString("email"),
@@ -168,7 +189,7 @@ public class AlunoDAO {
                                                 resultSet.getString("curso")
             );
             
-            Aluno aluno = new Aluno(resultSet.getInt("id_aluno"), resultSet.getString("matricula"), cadastro);
+            this.aluno = new Aluno(resultSet.getInt("id_aluno"), resultSet.getString("matricula"), cadastro);
             System.out.println("Tudo correu bem no metodo read da classe AlunoDAO! Retornando aluno referente ao id do parametro....");
             System.out.println("===================================================================");
             return aluno;
@@ -191,7 +212,7 @@ public class AlunoDAO {
         PreparedStatement stmt =  null;
         ResultSet resultSet;
         
-        String sql = "SELECT * FROM cadastro WHERE cpf = ?";
+        String sql = "SELECT * FROM view_aluno_cadastro WHERE cpf = ?";
         
         try {
             stmt = conexao.prepareStatement(sql);
@@ -201,11 +222,11 @@ public class AlunoDAO {
             resultSet = stmt.executeQuery();
             
             if (resultSet.next()){
-                System.out.println("Tudo correu bem no metodo read da classe AlunoDAO! O cadastro referente ao cpf já existe no banco de dados....");
+                System.out.println("Tudo correu bem no metodo read da classe AlunoDAO! O aluno referente ao cpf existe no banco de dados....");
                 System.out.println("===================================================================");
                 return true;
             } else {
-                System.out.println("Tudo correu bem no metodo read da classe AlunoDAO! O cadastro referente ao cpf não existe no banco de dados....");
+                System.out.println("Tudo correu bem no metodo read da classe AlunoDAO! O aluno referente ao cpf não existe no banco de dados....");
                 return false;
             }
             
@@ -239,7 +260,7 @@ public class AlunoDAO {
             resultSet = stmt.executeQuery();
             
             resultSet.next();
-            Cadastro cadastro = new Cadastro(   resultSet.getInt("id_cadastro"), 
+            this.cadastro = new Cadastro(   resultSet.getInt("id_cadastro"), 
                                                 resultSet.getString("nome"), 
                                                 resultSet.getString("cpf"),
                                                 resultSet.getString("email"),
@@ -249,7 +270,7 @@ public class AlunoDAO {
                                                 resultSet.getString("curso")
             );
             
-            Aluno aluno = new Aluno(resultSet.getInt("id_aluno"), resultSet.getString("matricula"), cadastro);
+            this.aluno = new Aluno(resultSet.getInt("id_aluno"), resultSet.getString("matricula"), cadastro);
             System.out.println("Tudo correu bem no metodo read da classe AlunoDAO! Retornando aluno referente aos dados de login...");
             System.out.println("===================================================================");
             return aluno;

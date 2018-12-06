@@ -64,7 +64,7 @@ public class CadastroDAOTest {
         
         CadastroDAO cadastroDao = new CadastroDAO();
         
-        if(cadastroDao.delete(cadastro) != 0) {
+        if(cadastroDao.delete(2) != 0) {
             System.out.println("Cadastro deletado com sucesso!");
         } else {
             fail("erro ao deletar");
